@@ -10,7 +10,7 @@
 #ifndef INC_EXERCISE5_H_
 #define INC_EXERCISE5_H_
 
-// Arrays to hold the GPIO ports and pins for each pair of traffic light LEDs
+// Arrays to hold the GPIO ports and pins for each pair of traffic lights LEDs
 GPIO_TypeDef* Traffic_LED_GPIO_Port[6] = {
     RED_1_GPIO_Port, YELLOW_1_GPIO_Port, GREEN_1_GPIO_Port,
     RED_2_GPIO_Port, YELLOW_2_GPIO_Port, GREEN_2_GPIO_Port
@@ -23,10 +23,9 @@ int Traffic_LED_Pin[6] = {
 
 int counter;
 int LED_color;              // 0 = red, 1 = yellow, 2 = green
-int current_traffic_light;  // Start with the first traffic light
+int current_traffic_light;  // Start with the first pair of traffic lights
 int traffic_cycle_complete; // Flag to reset the counter
 
-// Function to control the 4-way traffic lights
 void fourWayTraffic(void)
 {
     // Define LED indices for each color
@@ -34,7 +33,7 @@ void fourWayTraffic(void)
     int yellow_LED[2] = {1, 4}; // Yellow LEDs (0-based index: YELLOW_1 and YELLOW 2)
     int green_LED[2] = {2, 5};  // Green LEDs  (0-based index: GREEN_1 and GREEN_2)
 
-    // Reset counter for the new traffic light
+    // Reset counter for the next pair of traffic lights
     if (traffic_cycle_complete) {
         counter = 0;
         traffic_cycle_complete = 0;
@@ -44,14 +43,19 @@ void fourWayTraffic(void)
     {
         case 0: // Red light
 
-            // Turn off green light of the previous traffic light
+        	// Explain:
+        	// current_traffic_light = 0 is first pair of traffic lights, = 1 is the second one
+        	// red/yellow/green_LED[current_traffic_light]: choose the LEDs of first (index 0) or second (index 1) pair of traffic lights
+        	// Traffic_LED_GPIO_Port[red/yellow/green_LED[current_traffic_light - 1]]: get the GPIO_Port/Pin of corresponding LEDs
+
+            // Turn off green light of the previous pair of traffic lights
         	if (current_traffic_light > 0) {
                 HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[green_LED[current_traffic_light - 1]], Traffic_LED_Pin[green_LED[current_traffic_light - 1]], GPIO_PIN_RESET);
         	} else {
                 HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[green_LED[current_traffic_light + 1]], Traffic_LED_Pin[green_LED[current_traffic_light + 1]], GPIO_PIN_RESET);
         	}
 
-        	// Turn on red light for the current traffic light
+        	// Turn on red light
         	HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[red_LED[current_traffic_light]], Traffic_LED_Pin[red_LED[current_traffic_light]], GPIO_PIN_SET);
 
             // Countdown from 5 seconds
@@ -68,7 +72,7 @@ void fourWayTraffic(void)
             // Turn off red light
             HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[red_LED[current_traffic_light]], Traffic_LED_Pin[red_LED[current_traffic_light]], GPIO_PIN_RESET);
 
-            // Turn on yellow LEDs for the current traffic light
+            // Turn on yellow light
             HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[yellow_LED[current_traffic_light]], Traffic_LED_Pin[yellow_LED[current_traffic_light]], GPIO_PIN_SET); // Yellow on
 
             // Countdown from 2 seconds
@@ -86,7 +90,7 @@ void fourWayTraffic(void)
             // Turn off yellow light
             HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[yellow_LED[current_traffic_light]], Traffic_LED_Pin[yellow_LED[current_traffic_light]], GPIO_PIN_RESET); // Yellow on
 
-            // Turn on green LEDs for the current traffic light
+            // Turn on green light
             HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[green_LED[current_traffic_light]], Traffic_LED_Pin[green_LED[current_traffic_light]], GPIO_PIN_SET); // Green on
 
             // Countdown from 3 seconds
@@ -95,7 +99,7 @@ void fourWayTraffic(void)
             if (counter >= 3) {
                 counter = 0;
                 LED_color = 0;  // Move back to red
-                current_traffic_light = (current_traffic_light + 1) % 2; // Move to the next traffic light
+                current_traffic_light = (current_traffic_light + 1) % 2; // Move to the next pair of traffic lights
                 traffic_cycle_complete = 1;
             }
             break;
