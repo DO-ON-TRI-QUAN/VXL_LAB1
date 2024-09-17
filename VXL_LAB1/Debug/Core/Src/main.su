@@ -1,0 +1,14 @@
+exercise1.h:14:6:twoLEDBlinky	8	static
+exercise2.h:17:6:threeLEDBlinky	8	static
+exercise4.h:13:6:display7SEG	72	static
+exercise5.h:30:6:fourWayTraffic	32	static
+exercise6.h:27:6:clockSequence	8	static
+exercise7.h:11:6:clearAllClock	16	static
+exercise8.h:11:6:setNumberOnClock	16	static
+exercise9.h:11:6:clearNumberOnClock	16	static
+exercise10.h:15:6:updateClock	24	static
+exercise10.h:21:6:simpleAnalogClock	8	static
+main.c:72:5:main	8	static
+main.c:141:6:SystemClock_Config	72	static
+main.c:177:13:MX_GPIO_Init	32	static
+main.c:230:6:Error_Handler	4	static,ignoring_inline_asm
