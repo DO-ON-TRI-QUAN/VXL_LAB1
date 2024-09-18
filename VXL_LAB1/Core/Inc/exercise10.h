@@ -8,9 +8,14 @@
 #ifndef INC_EXERCISE10_H_
 #define INC_EXERCISE10_H_
 
-int hourPos = 0;     // Example input
-int minutePos = 11;  //
-int secondPos = 10;  //
+int hour = 0;
+int minute = 35;
+int second = 12;
+
+
+int hourPos = hour % 12;            // Example input
+int minutePos = (minute / 5) % 12;  //
+int secondPos = (second / 5) % 12;  //
 
 void updateClock(int hrPos, int minPos, int secPos) {
 	setNumberOnClock(hourPos);
