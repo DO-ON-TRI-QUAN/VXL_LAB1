@@ -113,7 +113,7 @@ int main(void)
 	  display7SEG(counter++);
 	  */
 
-      fourWayTraffic();                  // Exercise 5
+      //fourWayTraffic();                  // Exercise 5
 
 	  //clockSequence();                   // Exercise 6
 
