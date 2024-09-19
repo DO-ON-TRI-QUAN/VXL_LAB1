@@ -929,8 +929,8 @@ int main(void)
 
 	  //simpleAnalogClock();               // Exercise10
 
-      HAL_Delay(500);
- 800078c:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
+      HAL_Delay(1000);
+ 800078c:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000790:	f000 f9a4 	bl	8000adc <HAL_Delay>
       fourWayTraffic();                  // Exercise 5
  8000794:	e7f8      	b.n	8000788 <main+0x10>
