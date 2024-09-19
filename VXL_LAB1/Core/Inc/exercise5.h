@@ -54,9 +54,9 @@ void fourWayTraffic(void)
         case 0: // Red light
 
         	// Explain:
-        	// current_traffic_light = 0 is first pair of traffic lights, = 1 is the second one
-        	// red/yellow/green_LED[current_traffic_light]: choose the LEDs of first (index 0) or second (index 1) pair of traffic lights
-        	// Traffic_LED_GPIO_Port[red/yellow/green_LED[current_traffic_light - 1]]: get the GPIO_Port/Pin of corresponding LEDs
+        	// traffic_light1 is first pair of traffic lights, traffic_light2 is the second one
+        	// red/yellow/green_LED[traffic_light1/2]: choose the LEDs of first (index 0) or second (index 1) pair of traffic lights
+        	// Traffic_LED_GPIO_Port[red/yellow/green_LED[traffic_light1/2]]: get the GPIO_Port/Pin of corresponding LEDs
 
             // Turn off yellow light
         	HAL_GPIO_WritePin(Traffic_LED_GPIO_Port[yellow_LED[traffic_light1]], Traffic_LED_Pin[yellow_LED[traffic_light1]], GPIO_PIN_RESET);
