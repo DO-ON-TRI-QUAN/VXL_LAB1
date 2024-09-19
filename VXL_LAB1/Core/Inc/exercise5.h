@@ -129,6 +129,7 @@ void fourWayTraffic(void)
             if (counter2 >= 5) {
                 counter2 = 0;
                 LED_color2 = 2;  // Move to green
+                traffic_cycle2_complete = 1;
             }
             break;
 
@@ -164,7 +165,6 @@ void fourWayTraffic(void)
             if (counter2 >= 2) {
                 counter2 = 0;
                 LED_color2 = 1;  // Move to yellow
-                traffic_cycle2_complete = 1;
             }
             break;
     }
