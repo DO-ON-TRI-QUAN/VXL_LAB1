@@ -8,9 +8,9 @@
 #ifndef INC_EXERCISE10_H_
 #define INC_EXERCISE10_H_
 
-int hour = 0;
-int minute = 35;
-int second = 12;
+int const hour = 0;
+int const minute = 35;
+int const second = 12;
 
 
 int hourPos = hour % 12;            // Example input
