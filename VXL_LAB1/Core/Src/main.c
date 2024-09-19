@@ -123,7 +123,7 @@ int main(void)
 
 	  //clearNumberOnClock(9);             // Exercise 9
 
-	  //simpleAnalogClock();               // Exercise10
+	  simpleAnalogClock();               // Exercise10
 
       HAL_Delay(500);
 
